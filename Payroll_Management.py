@@ -180,7 +180,7 @@ class overtime:
         lst=emps.split(",")
         for emp in lst:
             
-            file1=open('payroll.dat',"rb")
+            file1=open('Files/payroll.dat',"rb")
             count=0
             try:                            #for referential integrity
                 while True:
@@ -226,7 +226,7 @@ class overtime:
                     break
                 
             else:                           #for referential integrity
-                file1=open('payroll.dat',"rb")
+                file1=open('Files/payroll.dat',"rb")
                 try:
                     while True:
                         rec=load(file1)
@@ -271,7 +271,7 @@ class overtime:
                   format("S.No.", "Employee Code", "Employee Name"))
             
             print("\t", "-"*53)
-            file1=open('payroll.dat',"rb")
+            file1=open('Files/payroll.dat',"rb")
             try:
                 while True:
                     rec=load(file1)
@@ -327,7 +327,7 @@ class attendance:
         while ans!="n":
             empcode=int(input("Enter Employee code: "))
             
-            file1=open('payroll.dat',"rb")
+            file1=open('Files/payroll.dat',"rb")
             count=0
             try:                            #for referential integrity
                 while True:
@@ -371,7 +371,7 @@ class attendance:
                 print("Entry of "+empid+" removed successfully.")
                 
             else:
-                file1=open('payroll.dat',"rb")
+                file1=open('Files/payroll.dat',"rb")
                 try:                        #for referential integrity
                     while True:
                         rec=load(file1)
@@ -406,7 +406,7 @@ class attendance:
         if self.month==nmonth:
             global count,s_no
             count+=1
-            file1=open('payroll.dat', "rb")
+            file1=open('Files/payroll.dat', "rb")
             print("\n")
             print("\t","{:^91s}".format("MONTHLY ATTENDANCE OF "+
                                    months[int(nmonth[:2])].upper()+"-20"+
@@ -447,9 +447,9 @@ def create_datafile():
     None.
 
     """
-    open("payroll.dat","wb").close()
-    open("overtime.dat","wb").close()
-    open("attendance.dat","wb").close()
+    open("Files/payroll.dat","wb").close()
+    open("Files/overtime.dat","wb").close()
+    open("Files/Files/attendance.dat","wb").close()
                 
             
 #----------------------------------main---------------------------------------
@@ -504,7 +504,7 @@ while act!='n':
 
 
     elif ans=="2":
-        with open("payroll.dat","ab") as file1:
+        with open("Files/payroll.dat","ab") as file1:
             rec.new_record()
             dump(rec, file1)
             print("New record added successfully.")
@@ -522,7 +522,7 @@ while act!='n':
         
         print("\t","-"*109)
         s_no=1
-        with open('payroll.dat',"rb") as file1:
+        with open('Files/payroll.dat',"rb") as file1:
             try:
                 while True:
                     rec=load(file1)
@@ -533,7 +533,7 @@ while act!='n':
 
     elif ans=="4":
         empid=int(input("Enter Employee Code: "))
-        with open("payroll.dat","rb") as file1:
+        with open("Files/payroll.dat","rb") as file1:
             with open("new.dat","wb") as nfile:
                 try:
                     while True:
@@ -550,15 +550,15 @@ while act!='n':
                 except EOFError:
                     nfile.close()
                     file1.close()
-        remove("payroll.dat")
-        rename("new.dat", "payroll.dat")
+        remove("Files/payroll.dat")
+        rename("new.dat", "Files/payroll.dat")
 
 
     elif ans=="5":
         empid=input("Enter Employee code: ")
 
-#       to delete record from 'payroll.dat'
-        with open('payroll.dat',"rb") as file1:
+#       to delete record from 'Files/payroll.dat'
+        with open('Files/payroll.dat',"rb") as file1:
             with open('new.dat',"wb") as nfile:
                 try:
                     while True:
@@ -569,11 +569,11 @@ while act!='n':
                 except EOFError:
                     file1.close()
                     nfile.close()
-        remove("payroll.dat")
-        rename('new.dat', "payroll.dat")
+        remove("Files/payroll.dat")
+        rename('new.dat', "Files/payroll.dat")
         
-#       to delete record from 'overtime.dat'
-        with open('overtime.dat',"rb") as file2:
+#       to delete record from 'Files/overtime.dat'
+        with open('Files/overtime.dat',"rb") as file2:
             with open('new.dat',"wb") as nfile:
                 try:
                     while True:
@@ -585,11 +585,11 @@ while act!='n':
                 except EOFError:
                     file2.close()
                     nfile.close()
-        remove('overtime.dat')
-        rename('new.dat', 'overtime.dat')
+        remove('Files/overtime.dat')
+        rename('new.dat', 'Files/overtime.dat')
         
-#       to delete record from 'attendance.dat'
-        with open('attendance.dat',"rb") as file3:
+#       to delete record from 'Files/Files/attendance.dat'
+        with open('Files/Files/attendance.dat',"rb") as file3:
             with open('new.dat',"wb") as nfile:
                 try:
                     while True:
@@ -600,15 +600,15 @@ while act!='n':
                 except EOFError:
                     file3.close()
                     nfile.close()
-        remove('attendance.dat')
-        rename('new.dat', 'attendance.dat')
+        remove('Files/Files/attendance.dat')
+        rename('new.dat', 'Files/Files/attendance.dat')
         
         print("Record with Employee Code "+empid+" is deleted successfully.")
 
 
     elif ans=="6":
         empcode=int(input("Enter Employee's Code: "))
-        file1=open("payroll.dat","rb")
+        file1=open("Files/payroll.dat","rb")
         count=0
         try:
             while True:
@@ -621,7 +621,7 @@ while act!='n':
                             
 
     elif ans=="7":
-        with open("overtime.dat","ab") as file2:
+        with open("Files/overtime.dat","ab") as file2:
             orec.add_record()
             dump(orec, file2)
             file2.close()
@@ -632,7 +632,7 @@ while act!='n':
         print("-"*16)
         print("| Dates Stored |")
         print("-"*16)
-        with open('overtime.dat',"rb") as file2:
+        with open('Files/overtime.dat',"rb") as file2:
             try:
                 while True:
                     orec=load(file2)
@@ -645,7 +645,7 @@ while act!='n':
         ndate=input("Enter date(dd/mm/yy): ")
         count=0
         s_no=1
-        with open('overtime.dat',"rb") as file2:
+        with open('Files/overtime.dat',"rb") as file2:
             with open('new.dat',"wb") as nfile:
                 try:
                     while True:
@@ -659,8 +659,8 @@ while act!='n':
                 if count==0:
                     print("No record available for date "+ndate+" to modify.")
                     
-        remove('overtime.dat')
-        rename('new.dat', 'overtime.dat')
+        remove('Files/overtime.dat')
+        rename('new.dat', 'Files/overtime.dat')
 
         
     elif ans=="9":
@@ -668,7 +668,7 @@ while act!='n':
         print("-"*16)
         print("| Dates Stored |")
         print("-"*16)
-        with open('overtime.dat',"rb") as file2:
+        with open('Files/overtime.dat',"rb") as file2:
             try:
                 while True:
                     orec=load(file2)
@@ -681,7 +681,7 @@ while act!='n':
         ndate=input("Enter date(dd/mm/yy): ")
         count=0
         s_no=1
-        with open('overtime.dat',"rb") as file2:
+        with open('Files/overtime.dat',"rb") as file2:
             try:
                 while True:
                     orec=load(file2)
@@ -693,7 +693,7 @@ while act!='n':
 
                     
     elif ans=="10":
-        with open('attendance.dat', "ab") as file3:
+        with open('Files/Files/attendance.dat', "ab") as file3:
             arec.input_records()
             dump(arec, file3)
             file3.flush()
@@ -706,7 +706,7 @@ while act!='n':
         print("| MONTHS STORED |")
         print("-"*17)
         for nmonth in months:
-            with open('attendance.dat', "rb") as file3:
+            with open('Files/Files/attendance.dat', "rb") as file3:
                 try:
                     while True:
                         arec=load(file3)
@@ -723,7 +723,7 @@ while act!='n':
         month=input("Enter Month(mm/yy): ")
         count=0
         s_no=1
-        with open('attendance.dat',"rb") as file3:
+        with open('Files/Files/attendance.dat',"rb") as file3:
             with open('new.dat', "wb") as nfile:
                 try:
                     while True:
@@ -739,8 +739,8 @@ while act!='n':
             print("No record of month "+months[int(month[:2])]+
                   "-20"+month[3:]+".")
     
-        remove("attendance.dat")
-        rename('new.dat', 'attendance.dat')
+        remove("Files/Files/attendance.dat")
+        rename('new.dat', 'Files/Files/attendance.dat')
         
             
     elif ans=="12":
@@ -749,7 +749,7 @@ while act!='n':
         print("| MONTHS STORED |")
         print("-"*17)
         for nmonth in months:
-            with open('attendance.dat', "rb") as file3:
+            with open('Files/Files/attendance.dat', "rb") as file3:
                 try:
                     while True:
                         arec=load(file3)
@@ -766,7 +766,7 @@ while act!='n':
         s_no=1
         month=input("Enter Month(mm/yy): ")
         count=0
-        with open('attendance.dat',"rb") as file3:
+        with open('Files/Files/attendance.dat',"rb") as file3:
             try:
                 while True:
                     arec=load(file3)
